@@ -1,0 +1,32 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="PackageAndCompile">
+  <PropertyGroup>
+    <MSBuildExtensions>$(MSBuildProjectDirectory)\..\.build\MSBuild.Community.Tasks.dll</MSBuildExtensions>
+    <SolutionFile>$(MSBuildProjectDirectory)\ConsoleApplication.csproj</SolutionFile>
+    <MainDLL>$(MSBuildProjectDirectory)\bin\$(Configuration)\ConsoleApplication.exe</MainDLL>
+  </PropertyGroup>
+ 
+  <UsingTask AssemblyFile="$(MSBuildExtensions)" TaskName="MSBuild.Community.Tasks.XmlUpdate" />
+ 
+  <Target Name="Compile">
+    <MSBuild Projects="$(SolutionFile)" Properties="Configuration=$(Configuration)"  />
+  </Target>
+
+  <Target Name="Package">
+    <GetAssemblyIdentity AssemblyFiles="$(MSBuildProjectDirectory)\bin\$(Configuration)\ConsoleApplication.exe">
+      <Output TaskParameter="Assemblies" ItemName="AsmInfo" />
+    </GetAssemblyIdentity>
+
+    <Exec WorkingDirectory="$(MSBuildProjectDirectory)" Command="copy build.nuspec temp.nuspec" />
+    <XmlUpdate Prefix="nuget" Namespace="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd" 
+               XmlFileName="$(MSBuildProjectDirectory)\temp.nuspec" 
+               XPath="/nuget:package/nuget:metadata/nuget:version"
+               Value="%(AsmInfo.Version)" />
+    <Exec WorkingDirectory="$(MSBuildProjectDirectory)" Command="nuget.exe pack temp.nuspec -Prop Configuration=$(Configuration)" />
+    <Exec Command="del temp.nuspec" />
+    <Exec Command="$(MSBuildProjectDirectory)\..\packages\squirrel.windows.0.6.1\tools\squirrel.exe --releasify ConsoleApplication.%(AsmInfo.Version).nupkg" />
+  </Target>
+
+  <Target Name="PackageAndCompile" DependsOnTargets="Compile, Package" />
+</Project>
+
+<!-- src: http://www.jeremyskinner.co.uk/2011/01/12/automating-nuget-package-creation-with-msbuild-and-powershell/ -->

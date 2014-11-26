@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquirrelDemoApp", "SquirrelDemoApp\SquirrelDemoApp.csproj", "{B082A33F-E524-42E7-B35B-37288522CF15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "ConsoleApplication\ConsoleApplication.csproj", "{A1B0AD50-B414-4AC7-96EC-D01D3F8CD163}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuspec", "nuspec", "{84BC67E7-8363-48BB-A924-A343D0030EBC}"
+	ProjectSection(SolutionItems) = preProject
+		ConsoleApplication\build.csproj = ConsoleApplication\build.csproj
+		ConsoleApplication\build.nuspec = ConsoleApplication\build.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{810DA87F-05CF-4CF3-A3F5-C0DD7A78BE40}"
+	ProjectSection(SolutionItems) = preProject
+		Build.proj = Build.proj
+		.build\MSBuild.Community.Tasks.dll = .build\MSBuild.Community.Tasks.dll
+		.build\MSBuild.Community.Tasks.targets = .build\MSBuild.Community.Tasks.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B082A33F-E524-42E7-B35B-37288522CF15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B082A33F-E524-42E7-B35B-37288522CF15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B082A33F-E524-42E7-B35B-37288522CF15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B082A33F-E524-42E7-B35B-37288522CF15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1B0AD50-B414-4AC7-96EC-D01D3F8CD163}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1B0AD50-B414-4AC7-96EC-D01D3F8CD163}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1B0AD50-B414-4AC7-96EC-D01D3F8CD163}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1B0AD50-B414-4AC7-96EC-D01D3F8CD163}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
